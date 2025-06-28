@@ -10,7 +10,7 @@ void right_diamond_pyramid(int n)
         // print one less row then other half, because at i = 0 it prints nothing
         for (j = 0; j < i; j++) 
         {
-            printf("*");
+            printf("* ");
         }
         printf("\n");
     }
@@ -216,11 +216,105 @@ void left_rhombus(int n){
     }
     return;
 }
+void Hourglass_pattern1(int n) {
+    int i, j, spaces, stars;
+    for (i = 0; i < 2 * n - 1; i++) {
+        if (i < n) {
+            spaces = i;
+            stars = 2 * (n - i) - 1;
+        } else {
+            spaces = 2 * n - i - 2;
+            stars = 2 * (i - n + 1) + 1;
+        }
+        for (j = 0; j < spaces; j++) printf(" ");
+        for (j = 0; j < stars; j++) printf("*");
+        printf("\n");
+    }
+}
+void Hourglass_pattern(int n){
+    int i, j;
+    for(i = 0; i < n; i++){
+        for ( j = 0; j < i; j++)
+        {
+            printf(" ");
+        }
+        
+        for(j = 0; j < (2*(n) - 2*(i) - 1); j++){
+            printf("*");
+        }
+        printf("\n");
+    }
+    for ( i = 1; i < (n); i++)
+    {
+        for ( j = 0; j < n - i - 1; j++)
+        {
+            printf(" ");
+        }
+        for ( j = 0; j < (2*(i) + 1 ); j++)
+        {
+            printf("*");
+        }
+        printf("\n");
+    }
+    
+} 
+void Hollow_square_pattern(int n){
+    int i, j;
+    for(i = 0; i < n; i++){
+        if(i == 0 || i == (n -1)){
+            for ( j = 0; j < n; j++)
+            {
+                printf("* ");
+            }
+        }
+        else{
+            printf("* ");
+            for (j = 0; j < (n - 2); j++)
+            {
+               printf("  ");
+            }
+            printf("*");
+        }
+        printf("\n");
+    }
+    return;
+}
+void Hollow_square_pattern1(int n) {
+    for (int i = 0; i < n; i++) {
+        if (i == 0 || i == n - 1) {
+            for (int j = 0; j < n; j++)
+                printf("* ");
+        } else {
+            printf("* ");
+            for (int j = 0; j < n - 2; j++)
+                printf("  ");
+            if (n > 1) printf("*");
+        }
+        printf("\n");
+    }
+}
+void Hollow_pyramid_pattern(int n){
+    int i, j;
+    for(i = 0; i < n; i++){
+        for(j = 0; j <(n - i - 1); j++){
+            printf(" ");
+        }
+        for ( j = 0; j < 2*(i) + 1 ; j++)
+        {
+            if(j == 0 || j == (2 * i) || i == (n - 1)){
+                printf("*");
+            }else{
+                printf(" ");
+            }
+        }
+        printf("\n");
+    }
+}
 
 int main(void){
     printf("Enter the pattern number\n");
     int n = 0;
     scanf("%d", &n);
-    diamond_brute(n);
+    Hollow_pyramid_pattern(n);
     return 0;
 }
