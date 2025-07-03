@@ -27,19 +27,19 @@ int main1() {
 }
 int main() {
     int n = 101;
-    int cnt = 0;
+    int count = 0;
 
     if (n <= 1)
         printf("%d is NOT prime", n);
     else {
         for (int i = 2; i <= n / 2; i++) {
             if (n % i == 0)
-                cnt++;
+                count++;
         }
 
         // if cnt is greater than 0 then n is
         // not prime
-        if (cnt > 0)
+        if (count > 0)
             printf("%d is NOT prime", n);
 
         // else n is prime
