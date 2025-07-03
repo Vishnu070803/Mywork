@@ -41,8 +41,7 @@ void Selection_sort(int a[], int n){
     for(int i = 0; i < n - 1; i++){
         int minimum_index = i;
         bool swapped = false;
-        // we assume the i th element as min and look into the array if any number less than the i th element.
-        // If true we swap the places
+        // we assume the i th element as min and look into the array if any number less than the i th element we swap the places
         for (int j = i + 1; j < n; j++){
             if(a[j] < a[minimum_index]){
                 minimum_index = j;
@@ -50,9 +49,8 @@ void Selection_sort(int a[], int n){
             }
         }
         if(swapped){
-            int temp = a[minimum_index];
-            a[minimum_index] = a[i];
-            a[i] = temp; // Swap the found minimum element with the current element
+            swap_2(a, i, minimum_index);
+            // Swap the found minimum element with the current element
         }
     }
 }
@@ -88,34 +86,34 @@ void merge(int a[], int low, int mid, int high){
             i++;
         }
     }
-    while (left <= mid || right <= high)
+    while (left <= mid)
     {
-        if(left <= mid){
-            temp[i]= a[left];
-            left++;
-            i++;
-        }else{
-            temp[i] = a[right];
-            right++;
-            i++;
-        }
+        temp[i] = a[left];
+        left++;
+        i++;
+    }
+    while (right <= high)
+    {
+        temp[i] = a[right];
+        right++;
+        i++;
     }
     for(i = low; i <= high; i++){
         a[i] = temp[i - low];
     }
     return;
 }
-void Merge_sort(int a[], int low, int high){
+void merge_sort(int a[], int low, int high){
     if(low >= high)
         return;
     int mid = low + (high - low) / 2 ;
-    Merge_sort(a, low, mid);
-    Merge_sort(a, (mid + 1), high);
+    merge_sort(a, low, mid);
+    merge_sort(a, (mid + 1), high);
     merge(a, low, mid, high);
     return;
 }
 
-int partial_sort(int a[], int low, int high){
+int partition(int a[], int low, int high){
     int i = low;
     int j = high;
     int pivot = low; // pivot is the first element of the array
@@ -123,6 +121,9 @@ int partial_sort(int a[], int low, int high){
     // If we want to use last element as pivot then we can change the pivot to a[high]
     // and swap the pivot with a[low] at the end of this function
     while(i < j){
+    // i scans from the left for elements greater than the pivot
+    // j scans from the right for elements less than or equal to the pivot
+    // When i < j, swap a[i] and a[j] to move misplaced elements to correct sides
         while (a[i] <= a[pivot] && i <= (high - 1))
         {
             i++;
@@ -140,11 +141,12 @@ int partial_sort(int a[], int low, int high){
 }
 void Quick_sort(int a[], int low, int high){
     if(low < high){
-        int pivot_index = partial_sort(a, low, high);
-        Quick_sort(a, low, pivot_index);
+        int pivot_index = partition(a, low, high);
+        Quick_sort(a, low, (pivot_index - 1 ));
         Quick_sort(a, (pivot_index + 1), high);
     }
 }
+
 
 int main(void) {
     int n;
@@ -161,7 +163,7 @@ int main(void) {
    // Bubble_sort(a, n);
    // Selection_sort(a, n);
    // Insertion_sort(a, n);
-   // Merge_sort(a, 0, (n - 1));
+   // merge_sort(a, 0, (n - 1));
     Quick_sort(a, 0, (n - 1));
     printf("Sorted array:\n");
     print_array(a, n);
