@@ -1,0 +1,184 @@
+ZED2_USB login: root (automatic login)
+
+root@ZED2_USB:~# ls
+root@ZED2_USB:~# lsusb -t
+/:  Bus 001.Port 001: Dev 001, Class=root_hub, Driver=ci_hdrc/1p, 480M
+    |__ Port 001: Dev 002, If 0, Class=Mass Storage, Driver=usb-storage, 480M
+root@ZED2_USB:~# ls /dev
+block            loop0            mtd1             mtdblock1        ram12            sda2             tty15            tty29            tty42            tty56            usbmon1
+bus              loop1            mtd1ro           mtdblock2        ram13            sg0              tty16            tty3             tty43            tty57            vcs
+char             loop2            mtd2             mtdblock3        ram14            shm              tty17            tty30            tty44            tty58            vcs1
+console          loop3            mtd2ro           mtdblock4        ram15            snd              tty18            tty31            tty45            tty59            vcsa
+cpu_dma_latency  loop4            mtd3             mtdblock5        ram2             stderr           tty19            tty32            tty46            tty6             vcsa1
+disk             loop5            mtd3ro           mtdblock6        ram3             stdin            tty2             tty33            tty47            tty60            vcsu
+fd               loop6            mtd4             mtdblock7        ram4             stdout           tty20            tty34            tty48            tty61            vcsu1
+fpga0            loop7            mtd4ro           null             ram5             tty              tty21            tty35            tty49            tty62            vga_arbiter
+full             mem              mtd5             port             ram6             tty0             tty22            tty36            tty5             tty63            watchdog
+gpiochip0        mmcblk0          mtd5ro           ptmx             ram7             tty1             tty23            tty37            tty50            tty7             watchdog0
+iio:device0      mmcblk0p1        mtd6             pts              ram8             tty10            tty24            tty38            tty51            tty8             zero
+initctl          mmcblk0p2        mtd6ro           ram0             ram9             tty11            tty25            tty39            tty52            tty9
+kmsg             mtab             mtd7             ram1             random           tty12            tty26            tty4             tty53            ttyPS0
+log              mtd0             mtd7ro           ram10            sda              tty13            tty27            tty40            tty54            urandom
+loop-control     mtd0ro           mtdblock0        ram11            sda1             tty14            tty28            tty41            tty55            usbmon0
+root@ZED2_USB:~# ls /sys/bus/usb/devices/
+1-0:1.0  1-1      1-1:1.0  usb1
+root@ZED2_USB:~# ls /sys/bus/scsi/       
+devices/           drivers/           drivers_autoprobe  drivers_probe      uevent             
+root@ZED2_USB:~# ls /sys/bus/scsi/
+devices/           drivers/           drivers_autoprobe  drivers_probe      uevent             
+root@ZED2_USB:~# ls /sys/bus/scsi/devices/
+0:0:0:0      host0        target0:0:0
+root@ZED2_USB:~# ls /sys/bus/scsi/drivers 
+sd
+root@ZED2_USB:~# ls /sys/bus/scsi/drivers/sd/
+0:0:0:0  bind     uevent   unbind
+root@ZED2_USB:~# cd /sys/bus/usb/devices/
+root@ZED2_USB:/sys/bus/usb/devices# echo "1-1:1.0" > /sys/bus/usb/drivers
+drivers/           drivers_autoprobe  drivers_probe      
+root@ZED2_USB:/sys/bus/usb/devices# echo "1-1:1.0" > /sys/bus/usb/drivers/
+hub/                     usb/                     usb_mass_debug/          usb_mass_storage_simple/ usbhid/                  
+uas/                     usb-storage/             usb_mass_driver/         usbfs/                   
+root@ZED2_USB:/sys/bus/usb/devices# echo "1-1:1.0" > /sys/bus/usb/drivers/usb-storage/
+-sh: /sys/bus/usb/drivers/usb-storage/: Is a directory
+root@ZED2_USB:/sys/bus/usb/devices# echo "1-1:1.0" > /sys/bus/usb/drivers/usb-storage/unbind 
+EXT4-fs (sda2): shut down requested (2)
+Aborting journal on device sda2-8.
+device offline error, dev sda, sector 31574016 op 0x1:(WRITE) flags 0x9800 phys_seg 1 prio class 0
+Buffer I/O error on dev sda2, logical block 3178496, lost sync page write
+JBD2: I/O error when updating journal superblock for sda2-8.
+root@ZED2_USB:/sys/bus/usb/devices# ls /sys/bus/scsi/drivers/sd/
+bind    uevent  unbind
+root@ZED2_USB:/sys/bus/usb/devices# ls /sys/bus/scsi/devices/
+root@ZED2_USB:/sys/bus/usb/devices# echo "1-1:1.0" > /sys/bus/usb/drivers/usb                
+usb/                     usb-storage/             usb_mass_debug/          usb_mass_driver/         usb_mass_storage_simple/ usbfs/                   usbhid/
+root@ZED2_USB:/sys/bus/usb/devices# echo "1-1:1.0" > /sys/bus/usb/drivers/usb_mass_storage_simple/bind 
+usb_mass_storage_simple: Probe triggered for device 05e3:0751 (Bus 1, Dev 2)
+usb_mass_storage_simple: Interface has 2 endpoints. (Device 1-1)
+usb_mass_storage_simple: Found bulk IN endpoint: 0x81 (Device 1-1)
+usb_mass_storage_simple: Found bulk OUT endpoint: 0x2 (Device 1-1)
+usb_mass_storage_simple: Assigned endpoints: ep_in=0x81, ep_out=0x2 (Device 1-1)
+scsi host1: usb_mass_storage_simple
+usb_mass_storage_simple: SCSI host added. Scanning for LUNs... (Device 1-1)
+usb_mass_storage_simple: Queueing SCSI command INQUIRY (0x12) (0x12) for LUN 0 (Device (null))
+usb_mass_storage_simple: Handling SCSI command: INQUIRY (0x12) (0x12), LUN 0, len 0, dir (efault) (Device IN)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (5 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (4 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (3 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (2 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (1 left) (Device 1-1)
+usb_mass_storage_simple: Failed to send CBW after retries: -11 (Device 1-1)
+usb_mass_storage_simple: SCSI command INQUIRY (0x12) (0x12) failed with error -11. (Device 1-1)
+usb_mass_storage_simple: Queueing SCSI command INQUIRY (0x12) (0x12) for LUN 0 (Device (null))
+usb_mass_storage_simple: Handling SCSI command: INQUIRY (0x12) (0x12), LUN 0, len 0, dir (efault) (Device IN)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (5 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (4 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (3 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (2 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (1 left) (Device 1-1)
+usb_mass_storage_simple: Failed to send CBW after retries: -11 (Device 1-1)
+usb_mass_storage_simple: SCSI command INQUIRY (0x12) (0x12) failed with error -11. (Device 1-1)
+usb_mass_storage_simple: Queueing SCSI command INQUIRY (0x12) (0x12) for LUN 0 (Device (null))
+usb_mass_storage_simple: Handling SCSI command: INQUIRY (0x12) (0x12), LUN 0, len 0, dir (efault) (Device IN)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (5 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (4 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (3 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (2 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (1 left) (Device 1-1)
+usb_mass_storage_simple: Failed to send CBW after retries: -11 (Device 1-1)
+usb_mass_storage_simple: SCSI command INQUIRY (0x12) (0x12) failed with error -11. (Device 1-1)
+usb_mass_storage_simple: Queueing SCSI command INQUIRY (0x12) (0x12) for LUN 0 (Device (null))
+usb_mass_storage_simple: Handling SCSI command: INQUIRY (0x12) (0x12), LUN 0, len 0, dir (efault) (Device IN)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (5 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (4 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (3 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (2 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (1 left) (Device 1-1)
+usb_mass_storage_simple: Failed to send CBW after retries: -11 (Device 1-1)
+usb_mass_storage_simple: SCSI command INQUIRY (0x12) (0x12) failed with error -11. (Device 1-1)
+usb_mass_storage_simple: Queueing SCSI command INQUIRY (0x12) (0x12) for LUN 0 (Device (null))
+usb_mass_storage_simple: Handling SCSI command: INQUIRY (0x12) (0x12), LUN 0, len 0, dir (efault) (Device IN)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (5 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (4 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (3 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (2 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (1 left) (Device 1-1)
+usb_mass_storage_simple: Failed to send CBW after retries: -11 (Device 1-1)
+usb_mass_storage_simple: SCSI command INQUIRY (0x12) (0x12) failed with error -11. (Device 1-1)
+usb_mass_storage_simple: Queueing SCSI command INQUIRY (0x12) (0x12) for LUN 0 (Device (null))
+usb_mass_storage_simple: Handling SCSI command: INQUIRY (0x12) (0x12), LUN 0, len 0, dir (efault) (Device IN)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (5 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (4 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (3 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (2 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (1 left) (Device 1-1)
+usb_mass_storage_simple: Failed to send CBW after retries: -11 (Device 1-1)
+usb_mass_storage_simple: SCSI command INQUIRY (0x12) (0x12) failed with error -11. (Device 1-1)
+usb_mass_storage_simple: Queueing SCSI command INQUIRY (0x12) (0x12) for LUN 0 (Device (null))
+usb_mass_storage_simple: Handling SCSI command: INQUIRY (0x12) (0x12), LUN 0, len 0, dir (efault) (Device IN)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (5 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (4 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (3 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (2 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (1 left) (Device 1-1)
+usb_mass_storage_simple: Failed to send CBW after retries: -11 (Device 1-1)
+usb_mass_storage_simple: SCSI command INQUIRY (0x12) (0x12) failed with error -11. (Device 1-1)
+usb_mass_storage_simple: Queueing SCSI command INQUIRY (0x12) (0x12) for LUN 0 (Device (null))
+usb_mass_storage_simple: Handling SCSI command: INQUIRY (0x12) (0x12), LUN 0, len 0, dir (efault) (Device IN)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (5 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (4 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (3 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (2 left) (Device 1-1)
+usb_mass_storage_simple: CBW phase - Timeout/EAGAIN (-11), retrying... (1 left) (Device 1-1)
+usb_mass_storage_simple: Failed to send CBW after retries: -11 (Device 1-1)
+usb_mass_storage_simple: SCSI command INQUIRY (0x12) (0x12) failed with error -11. (Device 1-1)
+usb_mass_storage_simple: Device initialized successfully. Look for /dev/sdX. (Device 1-1)
+root@ZED2_USB:/sys/bus/usb/devices# ls /dev/
+block            loop0            mtd1             mtdblock1        ram12            stderr           tty19            tty32            tty46            tty6             vcsa1
+bus              loop1            mtd1ro           mtdblock2        ram13            stdin            tty2             tty33            tty47            tty60            vcsu
+char             loop2            mtd2             mtdblock3        ram14            stdout           tty20            tty34            tty48            tty61            vcsu1
+console          loop3            mtd2ro           mtdblock4        ram15            tty              tty21            tty35            tty49            tty62            vga_arbiter
+cpu_dma_latency  loop4            mtd3             mtdblock5        ram2             tty0             tty22            tty36            tty5             tty63            watchdog
+disk             loop5            mtd3ro           mtdblock6        ram3             tty1             tty23            tty37            tty50            tty7             watchdog0
+fd               loop6            mtd4             mtdblock7        ram4             tty10            tty24            tty38            tty51            tty8             zero
+fpga0            loop7            mtd4ro           null             ram5             tty11            tty25            tty39            tty52            tty9
+full             mem              mtd5             port             ram6             tty12            tty26            tty4             tty53            ttyPS0
+gpiochip0        mmcblk0          mtd5ro           ptmx             ram7             tty13            tty27            tty40            tty54            urandom
+iio:device0      mmcblk0p1        mtd6             pts              ram8             tty14            tty28            tty41            tty55            usbmon0
+initctl          mmcblk0p2        mtd6ro           ram0             ram9             tty15            tty29            tty42            tty56            usbmon1
+kmsg             mtab             mtd7             ram1             random           tty16            tty3             tty43            tty57            vcs
+log              mtd0             mtd7ro           ram10            shm              tty17            tty30            tty44            tty58            vcs1
+loop-control     mtd0ro           mtdblock0        ram11            snd              tty18            tty31            tty45            tty59            vcsa
+root@ZED2_USB:/sys/bus/usb/devices# ls /sys/bus/scsi/
+devices/           drivers/           drivers_autoprobe  drivers_probe      uevent             
+root@ZED2_USB:/sys/bus/usb/devices# ls /sys/bus/scsi/devices/hosEXT4-fs (sda2): error count since last fsck: 1
+EXT4-fs (sda2): initial error at time 1746439969: ext4_reserve_inode_write:5792
+EXT4-fs (sda2): last error at time 1746439969: ext4_reserve_inode_write:5792
+ 
+ls: /sys/bus/scsi/devices/h: No such file or directory
+root@ZED2_USB:/sys/bus/usb/devices# ls /sys/bus/scsi/devices/h     
+ls: /sys/bus/scsi/devices/h: No such file or directory
+root@ZED2_USB:/sys/bus/usb/devices# ls /sys/bus/scsi/devices/ 
+host1
+root@ZED2_USB:/sys/bus/usb/devices# ls /sys/bus/scsi/devices/host1/
+power/     scsi_host/ subsystem/ uevent     
+root@ZED2_USB:/sys/bus/usb/devices# ls /sys/bus/scsi/devices/host1/
+power/     scsi_host/ subsystem/ uevent     
+root@ZED2_USB:/sys/bus/usb/devices# ls /sys/bus/scsi/devices/host1/scsi_host/
+host1
+root@ZED2_USB:/sys/bus/usb/devices# ls /dev/
+block            loop0            mtd1             mtdblock1        ram12            stderr           tty19            tty32            tty46            tty6             vcsa1
+bus              loop1            mtd1ro           mtdblock2        ram13            stdin            tty2             tty33            tty47            tty60            vcsu
+char             loop2            mtd2             mtdblock3        ram14            stdout           tty20            tty34            tty48            tty61            vcsu1
+console          loop3            mtd2ro           mtdblock4        ram15            tty              tty21            tty35            tty49            tty62            vga_arbiter
+cpu_dma_latency  loop4            mtd3             mtdblock5        ram2             tty0             tty22            tty36            tty5             tty63            watchdog
+disk             loop5            mtd3ro           mtdblock6        ram3             tty1             tty23            tty37            tty50            tty7             watchdog0
+fd               loop6            mtd4             mtdblock7        ram4             tty10            tty24            tty38            tty51            tty8             zero
+fpga0            loop7            mtd4ro           null             ram5             tty11            tty25            tty39            tty52            tty9
+full             mem              mtd5             port             ram6             tty12            tty26            tty4             tty53            ttyPS0
+gpiochip0        mmcblk0          mtd5ro           ptmx             ram7             tty13            tty27            tty40            tty54            urandom
+iio:device0      mmcblk0p1        mtd6             pts              ram8             tty14            tty28            tty41            tty55            usbmon0
+initctl          mmcblk0p2        mtd6ro           ram0             ram9             tty15            tty29            tty42            tty56            usbmon1
+kmsg             mtab             mtd7             ram1             random           tty16            tty3             tty43            tty57            vcs
+log              mtd0             mtd7ro           ram10            shm              tty17            tty30            tty44            tty58            vcs1
+loop-control     mtd0ro           mtdblock0        ram11            snd              tty18            tty31            tty45            tty59            vcsa
+

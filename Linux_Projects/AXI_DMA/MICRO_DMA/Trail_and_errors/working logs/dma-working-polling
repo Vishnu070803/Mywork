@@ -1,0 +1,29 @@
+root@micro-dma:/sys/class/DMA_driver/DMA_driver# echo 0x10000000 > src
+srcaddr  srclen   
+root@micro-dma:/sys/class/DMA_driver/DMA_driver# echo 0x10000000 > srcaddr 
+Checking the written value: 10003
+Mapping address in dma_srcaddr function :40400018
+root@micro-dma:/sys/class/DMA_driver/DMA_driver# echo 0x10000000 > srcaddr 
+Data from userspace : 268435456
+Mapping address in dma_srcaddr function :40400018
+root@micro-dma:/sys/class/DMA_driver/DMA_driver# echo 0x10 > srclen        
+Data from userspace : 268435456
+Verifying does the channel is running or not (last bit 0):0
+Mapping address in dma_srclen function :40400028
+Successfully wrote 0x10 to DDR address 0x0962913e
+^[[AAddress mapping in polling :40400004
+1th bit is set, condition met, channel idle!
+root@micro-dma:/sys/class/DMA_driver/DMA_driver# echo 0x10000100 > destaddr 
+mm2s transfer completed
+root@micro-dma:/sys/class/DMA_driver/DMA_driver# echo 0x10000100 > destaddr 
+Mapping address in dma_destaddr function :40400048
+root@micro-dma:/sys/class/DMA_driver/DMA_driver# echo 0x10 > destlen        
+Mapping address in dma_destaddr function :40400048
+Mapping address in s2mm_stransfer :40400034
+Verifying does the channel is running or not (last bit 0):0
+Mapping address in dma_destlen function :40400058
+Successfully wrote 0x10 to DDR address 0xfcc11aeb
+Address mapping in polling :40400034
+1th bit is set, condition met, channel idle!
+root@micro-dma:/sys/class/DMA_driver/DMA_driver# 
+

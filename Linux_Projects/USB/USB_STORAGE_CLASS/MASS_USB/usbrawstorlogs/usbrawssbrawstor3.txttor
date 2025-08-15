@@ -1,0 +1,38 @@
+root@ZED2_USB:/dev# echo "1-1:1.0" >/sys/bus/usb/drivers/usb_mass_debug/unbind 
+USB Mass Storage device disconnected
+root@ZED2_USB:/dev# ls
+block            loop0            mtd1             mtdblock1        ram12            stderr           tty19            tty32            tty46            tty6             vcsa1
+bus              loop1            mtd1ro           mtdblock2        ram13            stdin            tty2             tty33            tty47            tty60            vcsu
+char             loop2            mtd2             mtdblock3        ram14            stdout           tty20            tty34            tty48            tty61            vcsu1
+console          loop3            mtd2ro           mtdblock4        ram15            tty              tty21            tty35            tty49            tty62            vga_arbiter
+cpu_dma_latency  loop4            mtd3             mtdblock5        ram2             tty0             tty22            tty36            tty5             tty63            watchdog
+disk             loop5            mtd3ro           mtdblock6        ram3             tty1             tty23            tty37            tty50            tty7             watchdog0
+fd               loop6            mtd4             mtdblock7        ram4             tty10            tty24            tty38            tty51            tty8             zero
+fpga0            loop7            mtd4ro           null             ram5             tty11            tty25            tty39            tty52            tty9
+full             mem              mtd5             port             ram6             tty12            tty26            tty4             tty53            ttyPS0
+gpiochip0        mmcblk0          mtd5ro           ptmx             ram7             tty13            tty27            tty40            tty54            urandom
+iio:device0      mmcblk0p1        mtd6             pts              ram8             tty14            tty28            tty41            tty55            usbmon0
+initctl          mmcblk0p2        mtd6ro           ram0             ram9             tty15            tty29            tty42            tty56            usbmon1
+kmsg             mtab             mtd7             ram1             random           tty16            tty3             tty43            tty57            vcs
+log              mtd0             mtd7ro           ram10            shm              tty17            tty30            tty44            tty58            vcs1
+loop-control     mtd0ro           mtdblock0        ram11            snd              tty18            tty31            tty45            tty59            vcsa
+root@ZED2_USB:/dev# echo "1-1:1.0" >/sys/bus/usb/drivers/usb_mass_debug/bind   
+USB Mass Storage device connected, major=0
+Endpoints: IN=0x81 OUT=0x02
+root@ZED2_USB:/dev# ls /dev
+(null)-10437985  loop-control     mtd0ro           mtdblock0        ram11            snd              tty18            tty31            tty45            tty59            vcsa
+block            loop0            mtd1             mtdblock1        ram12            stderr           tty19            tty32            tty46            tty6             vcsa1
+bus              loop1            mtd1ro           mtdblock2        ram13            stdin            tty2             tty33            tty47            tty60            vcsu
+char             loop2            mtd2             mtdblock3        ram14            stdout           tty20            tty34            tty48            tty61            vcsu1
+console          loop3            mtd2ro           mtdblock4        ram15            tty              tty21            tty35            tty49            tty62            vga_arbiter
+cpu_dma_latency  loop4            mtd3             mtdblock5        ram2             tty0             tty22            tty36            tty5             tty63            watchdog
+disk             loop5            mtd3ro           mtdblock6        ram3             tty1             tty23            tty37            tty50            tty7             watchdog0
+fd               loop6            mtd4             mtdblock7        ram4             tty10            tty24            tty38            tty51            tty8             zero
+fpga0            loop7            mtd4ro           null             ram5             tty11            tty25            tty39            tty52            tty9
+full             mem              mtd5             port             ram6             tty12            tty26            tty4             tty53            ttyPS0
+gpiochip0        mmcblk0          mtd5ro           ptmx             ram7             tty13            tty27            tty40            tty54            urandom
+iio:device0      mmcblk0p1        mtd6             pts              ram8             tty14            tty28            tty41            tty55            usbmon0
+initctl          mmcblk0p2        mtd6ro           ram0             ram9             tty15            tty29            tty42            tty56            usbmon1
+kmsg             mtab             mtd7             ram1             random           tty16            tty3             tty43            tty57            vcs
+log              mtd0             mtd7ro           ram10            shm              tty17            tty30            tty44            tty58            vcs1
+root@ZED2_USB:/dev#    
