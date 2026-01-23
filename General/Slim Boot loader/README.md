@@ -14,13 +14,16 @@ If you are new to Intel Silicon Security or the x86 boot process, follow this or
 *   **[Narrated Speaker Guide](file:///home/admin1/Intel/review/Arrow_Lake_Boot_Flow_Narrated_Speaker_Guide.md)**
     *   **Perspective**: Educational / Narrative.
     *   **Goal**: Understand the "Story" of the silicon. It explains long journeys like "The Starter Motor" (CSME) and "The Auditor" (ACM) using engaging analogies.
+    *   **Original Source**: Expanded from `Arrow_Lake_Boot_Flow_Text.txt`.
 
 ### 2. The Core Security Domains (Master Guides)
 Once you have the big picture, dive into the authoritative technical mechanisms:
 *   **[CSME Security Master Guide](file:///home/admin1/Intel/review/Intel_CSME_Security_Role_Master_Guide_VERIFIED.md)**
     *   **Focus**: What happens *before* the CPU wakes up. Covers PMC patches, hardwired SPI DMA, and platform gating.
+    *   **Consolidated from**: `CSME_Role_Comparative_Analysis.md` and `CSME_Security_Role_Explained.md`.
 *   **[Boot Guard Chain of Trust & FAQ](file:///home/admin1/Intel/review/Intel_Boot_Guard_Chain_of_Trust_Master_FAQ_VERIFIED.md)**
     *   **Focus**: The cryptographic relay. Covers the 4-step ACM audit, ACRAM "Vault" isolation, and flexibility of Key Manifests.
+    *   **Consolidated from**: `Boot_Guard_Chain_of_Trust_Explained.md` and `Boot_Guard_Clarifications_FAQ.md`.
 
 ### 3. The Technical Reference (Deep Dive)
 *   **[Complete Arrow Lake Technical Guide](file:///home/admin1/Intel/review/Complete_Arrow_Lake_Boot_Flow_Technical_Guide.md)**
