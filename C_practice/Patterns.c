@@ -61,7 +61,7 @@ void right_half_pyramid(int n)
 void left_half_pyramid(int n){
     int i, j, g;
     for(i = 0; i < n; i++){
-        // n - 1 -i because i start at 0 and no of empty space must less then 1
+        // n - 1 -i because i start at 0 and no of empty space must less then 1 by the n
         for(j = 0; j < n - 1 - i; j++){
             printf(" ");
         }
