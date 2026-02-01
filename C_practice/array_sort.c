@@ -67,6 +67,25 @@ void Insertion_sort(int a[], int n){
         }
     }
 }
+void insertion_sort_perfect(int a[], int n)
+{
+    int i, j, key;
+
+    for (i = 1; i < n; i++)
+    {
+        key = a[i];      // element to insert
+        j = i - 1;
+
+        /* Shift elements greater than key to one position ahead */
+        while (j >= 0 && a[j] > key)
+        {
+            a[j + 1] = a[j];
+            j--;
+        }
+
+        a[j + 1] = key;  // insert key in correct place
+    }
+}
 
 void merge(int a[], int low, int mid, int high){
     int size = (high - low ) + 1;
