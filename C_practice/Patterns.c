@@ -120,7 +120,7 @@ void full_pyramid(int n){
         for(j = 0; j < n - i - 1; j ++){
             printf(" ");
         }
-        for(g = 0; g <= (2*i); g++){
+        for(g = 0; g <= (2*i + 1); g++){
             printf("*");
         }
         printf("\n");
