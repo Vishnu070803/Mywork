@@ -137,8 +137,7 @@ int partition(int a[], int low, int high){
     int j = high;
     int pivot = low; // pivot is the first element of the array
     // We are using the first element as pivot
-    // If we want to use last element as pivot then we can change the pivot to a[high]
-    // and swap the pivot with a[low] at the end of this function
+    // If we want to use last element as pivot then we can change the pivot to high
     while(i < j){
     // i scans from the left for elements greater than the pivot
     // j scans from the right for elements less than or equal to the pivot
