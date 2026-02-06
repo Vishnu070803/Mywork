@@ -141,7 +141,7 @@ int partition(int a[], int low, int high){
     while(i < j){
     // i scans from the left for elements greater than the pivot
     // j scans from the right for elements less than or equal to the pivot
-    // When i < j, swap a[i] and a[j] to move misplaced elements to correct sides
+    // When i < j & a=i at greater and j at smaller elements than pivot, swap a[i] and a[j] to move misplaced elements to correct sides
         while (a[i] <= a[pivot] && i <= (high - 1))
         {
             i++;
